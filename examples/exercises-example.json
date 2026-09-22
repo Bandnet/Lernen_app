@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "title": "Zellaufbau Aufgaben",
+  "exercises": [
+    {
+      "id": "q1",
+      "type": "multiple_choice",
+      "question": "Was ist die Aufgabe des Zellkerns?",
+      "options": ["Energie erzeugen", "DNA enthalten", "Proteine abbauen", "Wasser speichern"],
+      "answer": 1,
+      "explanation": "Der Zellkern enthält die DNA und steuert die Vorgänge in der Zelle."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "question": "Pflanzenzellen besitzen Chloroplasten.",
+      "answer": true,
+      "explanation": "Chloroplasten ermöglichen die Photosynthese."
+    },
+    {
+      "id": "q3",
+      "type": "text_input",
+      "question": "Wie heißt der Prozess, bei dem Pflanzen Lichtenergie nutzen, um Zucker herzustellen?",
+      "answer": "Photosynthese",
+      "explanation": "Bei der Photosynthese entstehen aus Wasser und CO₂ Traubenzucker und Sauerstoff."
+    },
+    {
+      "id": "q4",
+      "type": "multiple_choice",
+      "question": "Welches Organell ist für die Energiegewinnung (ATP) zuständig?",
+      "options": ["Ribosom", "Vakuole", "Mitochondrium", "Zellwand"],
+      "answer": 2,
+      "explanation": "Mitochondrien werden auch „Kraftwerke der Zelle“ genannt."
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "question": "Tierzellen besitzen eine Zellwand.",
+      "answer": false,
+      "explanation": "Nur Pflanzenzellen (sowie Pilze und Bakterien) haben eine Zellwand."
+    },
+    {
+      "id": "q6",
+      "type": "text_input",
+      "question": "Wie nennt man Zellen ohne echten Zellkern?",
+      "answer": "Prokaryoten",
+      "acceptedAnswers": ["Prokaryot", "Prokaryoten-Zellen", "Prokaryotische Zellen"],
+      "explanation": "Prokaryoten (z. B. Bakterien) besitzen keinen von einer Membran umgebenen Zellkern."
+    },
+    {
+      "id": "q7",
+      "type": "multiple_choice",
+      "question": "Was regelt den Stoffaustausch zwischen Zelle und Umgebung?",
+      "options": ["Die Zellmembran", "Der Zellkern", "Das Chloroplast", "Die Vakuole"],
+      "answer": 0
+    },
+    {
+      "id": "q8",
+      "type": "true_false",
+      "question": "Die Vakuole ist in Pflanzenzellen meist besonders groß.",
+      "answer": true,
+      "explanation": "Sie speichert Wasser und Stoffe und sorgt für den nötigen Innendruck."
+    },
+    {
+      "id": "q9",
+      "type": "text_input",
+      "question": "Wie heißt der grüne Farbstoff in den Chloroplasten?",
+      "answer": "Chlorophyll",
+      "explanation": "Chlorophyll nimmt das Licht für die Photosynthese auf."
+    },
+    {
+      "id": "q10",
+      "type": "multiple_choice",
+      "question": "Welche Aussage über Eukaryoten ist richtig?",
+      "options": [
+        "Sie haben keinen Zellkern.",
+        "Sie haben einen Zellkern.",
+        "Sie besitzen keine Zellmembran.",
+        "Es sind ausschließlich Einzeller."
+      ],
+      "answer": 1
+    }
+  ]
+}

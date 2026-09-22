@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./icons/favicon-64.png" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="./icons/apple-touch-icon.png" color="#0a7aff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="description" content="Persönliche Lern-App: Fächer, Lernthemen, Zusammenfassungen und Aufgaben – offline nutzbar." />
+    <!-- iOS: installable as a standalone app ("Zum Home-Bildschirm") -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Lernen" />
+    <title>Lernen</title>
+    <script>
+      // Apply saved theme/accent/language before the first paint (values are mirrored from the settings).
+      (function () {
+        try {
+          var r = document.documentElement, t = localStorage.getItem('learn-theme'), a = localStorage.getItem('learn-accent');
+          if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t);
+          if (localStorage.getItem('learn-language') === 'en') r.lang = 'en';
+          if (/^#[0-9a-f]{6}$/i.test(a)) {
+            r.style.setProperty('--accent', a);
+            var c = function (i) { var v = parseInt(a.substr(i, 2), 16) / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+            var l = 0.2126 * c(1) + 0.7152 * c(3) + 0.0722 * c(5);
+            r.style.setProperty('--accent-contrast', l > 0.45 ? '#000000' : '#ffffff');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
