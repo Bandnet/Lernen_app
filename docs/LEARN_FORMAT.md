@@ -6,8 +6,8 @@ Rename it to `.zip` to look inside.
 ```
 Biologie_Zellaufbau.learn
 ├── manifest.json      (required)
-├── summary.pdf        or  summary.html
-├── assets/001.png …   images / CSS / fonts used by summary.html
+├── summary.pdf, summary.html, or summary.md
+├── assets/001.png …   images / CSS / fonts used by summary.html or summary.md
 └── exercises.json     same format as docs/EXERCISES.md
 ```
 
@@ -26,6 +26,7 @@ Biologie_Zellaufbau.learn
     "fileName": "zellaufbau.html",
     "assets": [{ "path": "Bild 1.png", "file": "assets/001.png", "mimeType": "image/png" }]
   },
+  "// summary.type": "one of \"pdf\", \"html\" or \"markdown\"; file is summary.pdf/summary.html/summary.md accordingly",
   "exercises": { "file": "exercises.json" }
 }
 ```

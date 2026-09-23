@@ -10,6 +10,7 @@ const paths = {
   upload: 'M12 16V5M7 9l5-5 5 5M5 20h14',
   sliders: 'M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4',
   share: 'M12 3v12M8 7l4-4 4 4M5 12v7a1 1 0 001 1h12a1 1 0 001-1v-7',
+  minus: 'M5 12h14',
 } as const;
 
 export type IconName = keyof typeof paths;

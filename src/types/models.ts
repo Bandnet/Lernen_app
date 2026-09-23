@@ -28,7 +28,7 @@ export interface TopicInput {
   color?: string;
 }
 
-export type SummaryType = 'pdf' | 'html';
+export type SummaryType = 'pdf' | 'html' | 'markdown';
 
 /** An extra file (image, stylesheet, font) that an HTML summary refers to. */
 export interface SummaryAsset {

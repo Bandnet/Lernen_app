@@ -8,6 +8,7 @@ import {
   LearnFileError,
   MANIFEST_FILE,
   SUMMARY_HTML_FILE,
+  SUMMARY_MARKDOWN_FILE,
   SUMMARY_PDF_FILE,
   type LearnManifest,
 } from './manifest';
@@ -50,7 +51,8 @@ export async function buildLearnFile(repo: Repository, topicId: string): Promise
   if (!manifest.subject.name) manifest.subject.name = topic.name;
 
   if (summary) {
-    const file = summary.type === 'pdf' ? SUMMARY_PDF_FILE : SUMMARY_HTML_FILE;
+    const file =
+      summary.type === 'pdf' ? SUMMARY_PDF_FILE : summary.type === 'html' ? SUMMARY_HTML_FILE : SUMMARY_MARKDOWN_FILE;
     files[file] = [await bytesOf(summary.data), { level: summary.type === 'pdf' ? 0 : 6 }];
 
     const assets: { path: string; file: string; mimeType: string }[] = [];

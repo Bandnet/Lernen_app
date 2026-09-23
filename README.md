@@ -21,15 +21,23 @@ Production build: `npm run build` (output in `dist/`).
       pages/        Dashboard, Topic
       styles/       global.css (design tokens, light/dark)
 
-## Summaries (Phase 2)
+## Summaries (Phase 2, + Markdown)
 
-- PDF: stored as a Blob and shown with the browser's own PDF viewer inside the page.
-- HTML: stored as a Blob and shown in a sandboxed iframe. Scripts, frames, plugins and
-  inline event handlers are removed, a strict Content-Security-Policy is added, and the
-  iframe has no `allow-scripts` / `allow-same-origin`. Interactive (JavaScript) pages
-  therefore show only their static content.
-- HTML images / CSS / fonts: select them together with the HTML file when importing;
-  they are stored with the summary and inlined when displayed.
+Three formats are supported for a topic's summary:
+
+- **PDF**: stored as a Blob and rendered on a canvas with the app's own toolbar
+  (page navigation, zoom, fit-width) instead of the browser's built-in PDF viewer — see
+  `src/components/PdfViewer.tsx`.
+- **HTML**: stored as a Blob and shown in a sandboxed iframe, as close to the original as
+  possible. Scripts, frames, plugins and inline event handlers are removed, a strict
+  Content-Security-Policy is added, and the iframe has no `allow-scripts` / `allow-same-origin`.
+  Interactive (JavaScript) pages therefore show only their static content.
+- **Markdown** (`.md`): converted to HTML (`marked`, GitHub-flavoured — tables, task lists,
+  strikethrough), sanitized (`DOMPurify`, since Markdown allows raw inline HTML through) and
+  rendered directly with the app's own typography and dark mode — see
+  `src/summary/markdownRender.ts` and `src/components/MarkdownViewer.tsx`.
+- For HTML and Markdown: select images (and for HTML, CSS/fonts) together with the main file
+  when importing; they are stored with the summary and inlined when displayed.
 - A sample summary lives in `examples/zellaufbau-summary.html`.
 
 ## Exercises (Phase 3)
@@ -73,6 +81,12 @@ A small localStorage mirror lets the page start in the right theme without flash
   recovery screen instead of a blank page (`src/components/ErrorBoundary.tsx`).
 - The app asks the browser to keep its storage persistent (best effort).
 - Back up important topics with "Exportieren": browser data can be cleared by the user or the browser.
+
+## Custom PDF viewer
+
+PDFs are rendered on a canvas (`pdfjs-dist`, see `src/components/PdfViewer.tsx`) with the app's
+own toolbar (page navigation, zoom, fit-width) instead of the browser's built-in PDF viewer, so it
+looks consistent across browsers and matches light/dark mode. Works fully offline.
 
 ## Offline / installable app (PWA)
 

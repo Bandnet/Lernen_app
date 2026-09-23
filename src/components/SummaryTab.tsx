@@ -6,6 +6,7 @@ import type { Summary } from '../types/models';
 import { Button } from './Button';
 import { ConfirmDialog } from './ConfirmDialog';
 import { HtmlViewer } from './HtmlViewer';
+import { MarkdownViewer } from './MarkdownViewer';
 import { PdfViewer } from './PdfViewer';
 import { SummaryDropzone } from './SummaryDropzone';
 
@@ -73,7 +74,7 @@ export function SummaryTab({ topicId }: { topicId: string }) {
     <div>
       <div className="summary-toolbar">
         <div className="summary-file">
-          <span className="badge">{summary.type.toUpperCase()}</span>
+          <span className="badge">{summary.type === 'markdown' ? 'MD' : summary.type.toUpperCase()}</span>
           <span className="summary-file-name">{summary.fileName}</span>
         </div>
         <div className="header-actions">
@@ -83,7 +84,13 @@ export function SummaryTab({ topicId }: { topicId: string }) {
       </div>
       {error && <p className="field-error">{error}</p>}
 
-      {summary.type === 'pdf' ? <PdfViewer summary={summary} /> : <HtmlViewer summary={summary} />}
+      {summary.type === 'pdf' ? (
+        <PdfViewer summary={summary} />
+      ) : summary.type === 'html' ? (
+        <HtmlViewer summary={summary} />
+      ) : (
+        <MarkdownViewer summary={summary} />
+      )}
 
       <input
         ref={replaceInput}

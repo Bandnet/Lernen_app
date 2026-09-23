@@ -11,12 +11,13 @@ export const MANIFEST_FILE = 'manifest.json';
 export const EXERCISES_FILE = 'exercises.json';
 export const SUMMARY_PDF_FILE = 'summary.pdf';
 export const SUMMARY_HTML_FILE = 'summary.html';
+export const SUMMARY_MARKDOWN_FILE = 'summary.md';
 export const ASSET_DIR = 'assets/';
 const ASSET_FILE = /^assets\/[A-Za-z0-9._-]{1,80}$/;
 
 export function isAllowedEntry(name: string): boolean {
   return (
-    [MANIFEST_FILE, EXERCISES_FILE, SUMMARY_PDF_FILE, SUMMARY_HTML_FILE].includes(name) ||
+    [MANIFEST_FILE, EXERCISES_FILE, SUMMARY_PDF_FILE, SUMMARY_HTML_FILE, SUMMARY_MARKDOWN_FILE].includes(name) ||
     (ASSET_FILE.test(name) && !name.includes('..'))
   );
 }
@@ -29,7 +30,7 @@ export interface LearnManifest {
   subject: { name: string };
   topic: { name: string; description: string; icon: string; color: string };
   summary: null | {
-    type: 'pdf' | 'html';
+    type: 'pdf' | 'html' | 'markdown';
     file: string;
     fileName: string;
     assets: { path: string; file: string; mimeType: string }[];
@@ -40,7 +41,12 @@ export interface LearnManifest {
 export interface ParsedManifest {
   subjectName: string;
   topic: { name: string; description: string; icon: string; color: string };
-  summary: null | { type: 'pdf' | 'html'; file: string; fileName: string; assets: { path: string; file: string }[] };
+  summary: null | {
+    type: 'pdf' | 'html' | 'markdown';
+    file: string;
+    fileName: string;
+    assets: { path: string; file: string }[];
+  };
   exercises: null | { file: string };
 }
 
@@ -89,9 +95,9 @@ export function parseManifest(raw: unknown): ParsedManifest {
   if (raw.summary !== undefined && raw.summary !== null) {
     if (!isObject(raw.summary)) invalid('summary');
     const s = raw.summary as Record<string, unknown>;
-    if (s.type !== 'pdf' && s.type !== 'html') invalid('summary.type');
-    const type = s.type as 'pdf' | 'html';
-    const expectedFile = type === 'pdf' ? SUMMARY_PDF_FILE : SUMMARY_HTML_FILE;
+    if (s.type !== 'pdf' && s.type !== 'html' && s.type !== 'markdown') invalid('summary.type');
+    const type = s.type as 'pdf' | 'html' | 'markdown';
+    const expectedFile = type === 'pdf' ? SUMMARY_PDF_FILE : type === 'html' ? SUMMARY_HTML_FILE : SUMMARY_MARKDOWN_FILE;
     if (s.file !== expectedFile) invalid('summary.file');
     const fileName = text(s, 'fileName', 255, false, 'summary.fileName') || expectedFile;
 

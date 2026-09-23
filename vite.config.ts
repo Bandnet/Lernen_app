@@ -34,9 +34,10 @@ export default defineConfig({
         ],
       },
       workbox: {
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         // App shell (HTML/CSS/JS/icons) is precached; user content lives in IndexedDB,
         // which the browser keeps regardless of the service worker.
-        globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        globPatterns: ['**/*.{js,mjs,css,html,svg,png,woff2}'],
         navigateFallback: 'index.html',
         // Never cache API calls (there are none in v1, but keep this safe if one is added later).
         runtimeCaching: [
